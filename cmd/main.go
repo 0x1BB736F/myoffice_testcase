@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	filePath := flag.String("filepath", "./testdata.txt", "path to file with URLs")
+	filePath := flag.String("filepath", "./testdata/urls.txt", "path to file with URLs")
 	timeOut := flag.Duration("timeout", time.Second*5, "timeout for every HTTP request")
 	flag.Parse()
 

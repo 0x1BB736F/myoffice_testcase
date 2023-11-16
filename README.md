@@ -4,7 +4,17 @@
 Формат входного файла: на каждой строке – один URL. URL может быть очень много! Но могут быть и невалидные URL.
 
 Пример входного файла:
-https://myoffice.ru
-https://yandex.ru
+https://myoffice.ru  
+https://yandex.ru  
 
 По каждому URL получить контент и вывести в консоль его размер и время обработки. Предусмотреть обработку ошибок.
+
+# Пример использования 
+
+```bash
+go run cmd/main.go
+```
+
+```bash
+go run cmd/main.go -filepath ./testdata/urls.txt
+```
