@@ -7,8 +7,10 @@ import (
 )
 
 type Reader struct {
+	// for line by line scanning
 	scanner bufio.Scanner
-	wChan   chan string
+	// for async handling
+	wChan chan string
 }
 
 func New(rc io.Reader) *Reader {
@@ -25,6 +27,7 @@ func (r *Reader) ReadChan() chan string {
 			<-time.Tick(time.Millisecond * 50)
 			r.wChan <- r.scanner.Text()
 		}
+		// close to stop for-range loop
 		close(r.wChan)
 	}()
 

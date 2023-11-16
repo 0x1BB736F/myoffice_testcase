@@ -13,9 +13,13 @@ import (
 )
 
 var (
+	// HTTP Status is not OK 200
 	ErrNotOK = errors.New("http response is not OK")
 
+	// If scheme is not HTTP(s), we shouldn`t do a request
 	ErrNotValidScheme = errors.New("not valid scheme")
+	// If verifier returns false IsURL
+	ErrNotURL = errors.New("not an URL")
 )
 
 type HttpClient struct {
@@ -62,15 +66,20 @@ func (c HttpClient) Get(ctx context.Context, URL string) (HttpResponse, error) {
 }
 
 func (c HttpClient) VerifyURL(URL string) error {
+	// Checks better then built-in url.Parse
 	ret, err := c.verifier.Verify(URL)
 	if err != nil {
 		return err
 	}
 
+	// We send requests only to HTTP(s)
+	if !ret.IsURL {
+		return ErrNotURL
+	}
+	// additional check for empty scheme
 	if ret.URLComponents != nil {
 		scheme := ret.URLComponents.Scheme
-		if scheme != "https" &&
-			scheme != "http" {
+		if scheme == "" {
 			return ErrNotValidScheme
 		}
 	}
