@@ -18,3 +18,12 @@ go run cmd/main.go
 ```bash
 go run cmd/main.go -filepath ./testdata/urls.txt
 ```
+
+Результат выполнения:
+```bash
+2023/11/16 23:29:10 ERROR cant do GET request error="Get \"httpz://yandex.ru\": unsupported protocol scheme \"httpz\""
+2023/11/16 23:29:10 ERROR cant do GET request error="Get \"//yandex.ru\": unsupported protocol scheme \"\""
+2023/11/16 23:29:10 ERROR cant verify URL error="not valid scheme" url=yandex.ru
+2023/11/16 23:29:10 ERROR cant do GET request error="Get \"http://localhost:8080\": dial tcp 127.0.0.1:8080: connect: connection refused"
+2023/11/16 23:29:10 INFO length: 15664, duration: 186.15775ms
+```
