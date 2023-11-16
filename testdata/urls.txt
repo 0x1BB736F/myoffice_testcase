@@ -1,0 +1,5 @@
+httpz://yandex.ru
+//yandex.ru
+yandex.ru
+https://yandex.ru
+http://localhost:8080
